@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <title>Knowledge Compilation Challenge for Variability</title>
   <meta charset="utf-8">
@@ -10,180 +11,258 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 </head>
+
 <body id="mainPage" data-spy="scroll" data-target=".navbar" data-offset="60">
 
-<nav class="navbar navbar-default navbar-fixed-top">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>                        
-      </button>
-      <a class="navbar-brand" href="../../index.html">Variability Challenges</a>
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../../index.html">Variability Challenges</a>
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="#abstract">Abstract</a></li>
+          <li><a href="#material">Material</a></li>
+          <li><a href="#overview">Overview</a></li>
+          <li><a href="#solutions">Solutions</a></li>
+          <li><a href="#discussion">Discussion</a></li>
+        </ul>
+      </div>
     </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="#abstract">Abstract</a></li>
-		<li><a href="#material">Material</a></li>
-        <li><a href="#overview">Overview</a></li>
-		<li><a href="#solutions">Solutions</a></li>
-		<li><a href="#discussion">Discussion</a></li>
-      </ul>
+  </nav>
+
+  <div class="jumbotron text-center">
+    <h4>SPLC 2020 Challenge</h4>
+    <h2>A BDD for Linux? The Knowledge Compilation Challenge for Variability</h2>
+    Thomas Thüm, University of Ulm, Germany<br>
+  </div>
+
+  <div id="abstract" class="container-fluid">
+    <div class="row">
+      <div class="col-sm-1"></div>
+      <div class="col-sm-2"></div>
+      <div class="col-sm-7">
+        What is the number of valid configurations for Linux? How to generate uniform random samples for Linux? Can we
+        create a binary decision diagram for Linux? It seems that the product-line community tries hard to answer such
+        questions for Linux and other configurable systems. However, attempts are often not published due to the
+        publication bias (i.e., unsuccessful attempts are not published). As a consequence, researchers keep trying by
+        potentially spending redundant effort. The goal of this challenge is to guide research on these computationally
+        complex problems and to foster the exchange between researchers and practitioners.
+      </div>
+      <div class="col-sm-2">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-1"></div>
+      <div class="col-sm-2"></div>
+      <div class="col-sm-7">
+        <img style="width:100%" src="./files/linux.png">
+      </div>
+      <div class="col-sm-2">
+      </div>
     </div>
   </div>
-</nav>
 
-<div class="jumbotron text-center">
-<h4>SPLC 2020 Challenge</h4>
-<h2>A BDD for Linux? The Knowledge Compilation Challenge for Variability</h2>
-Thomas Thüm, University of Ulm, Germany<br>
-</div>
-
-<div id="abstract" class="container-fluid">
-  <div class="row">
-  <div class="col-sm-1"></div>
-   <div class="col-sm-2"></div>
-    <div class="col-sm-7">
-What is the number of valid configurations for Linux? How to generate uniform random samples for Linux? Can we create a binary decision diagram for Linux? It seems that the product-line community tries hard to answer such questions for Linux and other configurable systems. However, attempts are often not published due to the publication bias (i.e., unsuccessful attempts are not published). As a consequence, researchers keep trying by potentially spending redundant effort. The goal of this challenge is to guide research on these computationally complex problems and to foster the exchange between researchers and practitioners.
+  <div id="material" class="container-fluid">
+    <div class="row">
+      <div class="col-sm-1"></div>
+      <div class="col-sm-2"></div>
+      <div class="col-sm-7">
+        <h2>Material</h2>
+        <a href="https://doi.org/10.1145/3382025.3414943" target="_new"><span
+            class="glyphicon glyphicon-file"></span>Challenge case description</a> <br>
+        <a href="https://www.youtube.com/watch?v=7j6TuHUmxPc" target="_new"><span
+            class="glyphicon glyphicon-facetime-video"></span> Video with an overview of the challenge</a> <br>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/7j6TuHUmxPc" frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen></iframe>
+      </div>
+      <div class="col-sm-2"></div>
     </div>
-	<div class="col-sm-2">
-	</div>
   </div>
-  <div class="row">
-  <div class="col-sm-1"></div>
-   <div class="col-sm-2"></div>
-    <div class="col-sm-7">
-		<img style="width:100%" src="./files/linux.png">
+
+  <div id="overview" class="container-fluid">
+    <div class="row">
+      <div class="col-sm-1"></div>
+      <div class="col-sm-2"></div>
+      <div class="col-sm-7">
+        <h2>Overview</h2>
+        <h4>What is the holy grail of the product-line community? A binary decision diagram for Linux.</h4>
+
+        Linux is an operating system with thousands of configuration options. These options cannot be arbitrarily
+        combined, as every option typically comes with constraints with respect to several other options. Constraints
+        are specified in KConfig, but can be translated into feature models or propositional logic. Whenever we analyze
+        the Linux kernel for errors, ignoring those constraints would lead to false positives. That is, tools would
+        report errors for invalid configurations, which cannot be used to compile a kernel. Hence, these constraints are
+        crucial for any kind of analysis of Linux.<br><br>
+
+        A <b>binary decision diagram</b> (short BDD) is data structure representing a propositional formula. While there
+        are multiple representations of propositional formulas, BDDs can have the advantage of reducing NP-complete
+        problems into more tractable problems (aka. <b>knowledge compilation</b>). For instance, checking whether a
+        formula represented as a BDD is satisfiable is an operation with constant effort. While operations on BDDs might
+        scale well, the downside of BDDs is that their construction can be intractable. The main reason for the
+        scalability challenge is that the variable ordering heavily influences the size of the BDD and they tend to
+        explode for most variable orderings.<br><br>
+
+        <h4>Why do we argue that a BDD for Linux is the holy grail of the product-line community?</h4>
+
+        First, it seems to be a challenging task. To the best of our knowledge, no one has been able to create a BDD for
+        Linux so far. In <a
+          href="https://www.uni-ulm.de/fileadmin/website_uni_ulm/iui.inst.170/publications/2020-VaMoS-Sundermann.pdf">recent
+          work</a>, we tried to create a BDD for hundreds of large feature models and failed for 98\% of them (i.e.,
+        100\% of models having more than 550 features). Furthermore, even though other knowledge compilation techniques
+        scaled to many large feature models, not a single knowledge compilation tool scaled to Linux when we tried to
+        compute the number of valid configurations. Similarly, <a href="../../2019/Sampling/index.html">t-wise sampling
+          algorithms typically do not scale to Linux</a>.<br><br>
+
+        Second, there is a considerable amount of research that is based on the translation of the feature model into a
+        BDD. In the past two decades, researchers proposed the use of BDDs to count the number of valid configurations,
+        to compute feature-model slices and differences, for interactive product configuration, to check whether
+        product-line artifacts are consistent, to parse preprocessor-based product lines, to simplify preprocessor
+        annotations, and to lift test-suite generation, data-flow analyses, or model checking to product lines. If we
+        aim to apply that research to Linux or similarly complex configuration spaces, it is an open question whether
+        BDDs can be created for them.<br><br>
+
+        Third, there are many advantages of having a BDD. While it is widely accepted that satisfiability solving scales
+        well for product lines, the potential advantage of a BDD is that one-time effort for the construction can
+        pay-off when the BDD is later employed in follow-up analyses. The potential is amplified by several factors.
+        First, a feature model is typically changed less frequently than implementation artifacts. As a consequence, a
+        new BDD only needs to be created when the feature model changes. Second, for every new revision of the product
+        line there are several analyses needed of which each typically is reduced to numerous satisfiability problems.
+        It is likely that a large portion of the satisfiability problems can be solved more efficiently using a
+        BDD.<br><br>
+
+        <h4>What is the goal of this challenge?</h4>
+
+        While our claim about the holy grail is focused on BDDs and Linux, there is a more general challenge behind this
+        specific one. Linux is just one example of a large-scale configuration space. A BDD is just one example of a
+        knowledge compilation technique. The goal of this challenge is to promote the problem of knowledge compilation
+        for large-scale configuration spaces. In particular, this challenge is not only focused on software
+        configuration, but also configurable systems and product configuration. Furthermore, any representation of the
+        configuration space that invests offline computations (i.e., compilation) in favor of faster online computations
+        would fall into the scope of this challenge.<br><br>
+
+        What is the problem of the current situation? Many product-line researchers seem to address very similar
+        problems for various reasons, but largely without documenting their failed attempts. Other researchers are most
+        likely repeating the same mistakes again. The goal of this challenge is to make this problem explicit, to give
+        researchers a forum to discuss attempts, and to exchange ideas on possible solutions.
+      </div>
+      <div class="col-sm-2">
+      </div>
     </div>
-	<div class="col-sm-2">
-	</div>
   </div>
-</div>
 
-<div id="material" class="container-fluid">
-  <div class="row">
-  <div class="col-sm-1"></div>
-   <div class="col-sm-2"></div>
-    <div class="col-sm-7">
-<h2>Material</h2>
-<a href="https://doi.org/10.1145/3382025.3414943" target="_new"><span class="glyphicon glyphicon-file"></span>Challenge case description</a> <br>
-<a href="https://www.youtube.com/watch?v=7j6TuHUmxPc" target="_new"><span class="glyphicon glyphicon-facetime-video"></span> Video with an overview of the challenge</a> <br>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/7j6TuHUmxPc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+  <div id="solutions" class="container-fluid bg-grey">
+    <div class="row">
+      <div class="col-sm-1"></div>
+      <div class="col-sm-2"></div>
+      <div class="col-sm-7">
+        <h2>Solutions</h2>
+
+        <h3>On the scalability of building binary decision diagrams for current feature models</h3>
+        <i>Tobias Heß, Chico Sundermann and Thomas Thüm</i><br />
+        SPLC 2021 Solution<br />
+        Binary decision diagrams (BDD) have been proposed for numerous product-line analyses. These analyses typically
+        exploit properties unique to decision diagrams, such as negation in constant time and space.
+        Furthermore, the existence of a BDD representing the configuration space of a product line removes the need to
+        employ SAT or #SAT solvers for their analysis. Recent work has shown that
+        the performance of state-of-the-art BDD libraries is significantly lower than previously reported and
+        hypothesized. In this work, we provide an assessment of the state-of-the-art of BDD scalability in
+        this domain and explain why previous results on the scalability of BDDs do not apply to more recent product-line
+        instances.<br />
+        <a href="https://doi.org/10.1145/3461001.3474452" target="_new"><span class="glyphicon glyphicon-file"></span>
+          Solution paper</a> <br>
+        <a href="https://www.youtube.com/watch?v=WFWKhEp2UYw" target="_new"><span
+            class="glyphicon glyphicon-facetime-video"></span> Video presentation of the solution</a> <br>
+        <iframe width="420" height="315" src="https://www.youtube.com/embed/WFWKhEp2UYw">
+        </iframe>
+
+        <h3>Configuring BDD Compilation Techniques for Feature Models</h3>
+        <i>Clemens Dubslaff, Nils Husung and Nikolai Käfer</i><br />
+        SPLC 2024 Solution<br />
+        The compilation of feature models into binary decision diagrams (BDDs) is a major challenge in the area of
+        configurable systems analysis. Many large-scale feature models have been reported to exceed state-of-the-art
+        compilation capabilities, e.g., for variants of the Linux kernel product line. However, experiments have been
+        mainly conducted on standard settings of the BDD compilers themselves, not taking advanced configurations into
+        account.
+
+        In this paper, we investigate the impact of various BDD compilation techniques for compiling feature models in
+        conjunctive normal form. Specifically, we evaluate preprocessing techniques from satisfiability (SAT) solving,
+        variable and clause ordering heuristics, non-incremental construction schemes, as well as parallelization of BDD
+        construction. Our experiments on current feature models show that BDD compilation of feature models greatly
+        benefits from these techniques, enabling to construct many previously no constructible large-scale feature
+        models within
+        seconds.<br />
+        <a href="https://doi.org/10.1145/3646548.3676538" target="_new"><span class="glyphicon glyphicon-file"></span>
+          Solution paper</a> <br>
+        <a href="https://doi.org/10.5281/zenodo.12707100" target="_new"><span class="glyphicon glyphicon-file"></span>
+          Artifact</a> <br>
+
+        <br />
+      </div>
+      <div class="col-sm-2"></div>
     </div>
-    <div class="col-sm-2"></div>
   </div>
-</div>
 
-<div id="overview" class="container-fluid">
-  <div class="row">
-  <div class="col-sm-1"></div>
-   <div class="col-sm-2"></div>
-    <div class="col-sm-7">
-		<h2>Overview</h2>
-		<h4>What is the holy grail of the product-line community? A binary decision diagram for Linux.</h4>
-		
-		Linux is an operating system with thousands of configuration options. These options cannot be arbitrarily combined, as every option typically comes with constraints with respect to several other options. Constraints are specified in KConfig, but can be translated into feature models or propositional logic. Whenever we analyze the Linux kernel for errors, ignoring those constraints would lead to false positives. That is, tools would report errors for invalid configurations, which cannot be used to compile a kernel. Hence, these constraints are crucial for any kind of analysis of Linux.<br><br>
-		
-		A <b>binary decision diagram</b> (short BDD) is data structure representing a propositional formula. While there are multiple representations of propositional formulas, BDDs can have the advantage of reducing NP-complete problems into more tractable problems (aka. <b>knowledge compilation</b>). For instance, checking whether a formula represented as a BDD is satisfiable is an operation with constant effort. While operations on BDDs might scale well, the downside of BDDs is that their construction can be intractable. The main reason for the scalability challenge is that the variable ordering heavily influences the size of the BDD and they tend to explode for most variable orderings.<br><br>
-		
-		<h4>Why do we argue that a BDD for Linux is the holy grail of the product-line community?</h4>
-		
-		First, it seems to be a challenging task. To the best of our knowledge, no one has been able to create a BDD for Linux so far. In <a href="https://www.uni-ulm.de/fileadmin/website_uni_ulm/iui.inst.170/publications/2020-VaMoS-Sundermann.pdf">recent work</a>, we tried to create a BDD for hundreds of large feature models and failed for 98\% of them (i.e., 100\% of models having more than 550 features). Furthermore, even though other knowledge compilation techniques scaled to many large feature models, not a single knowledge compilation tool scaled to Linux when we tried to compute the number of valid configurations. Similarly, <a href="../../2019/Sampling/index.html">t-wise sampling algorithms typically do not scale to Linux</a>.<br><br>
-		
-		Second, there is a considerable amount of research that is based on the translation of the feature model into a BDD. In the past two decades, researchers proposed the use of BDDs to count the number of valid configurations, to compute feature-model slices and differences, for interactive product configuration, to check whether product-line artifacts are consistent, to parse preprocessor-based product lines, to simplify preprocessor annotations, and to lift test-suite generation, data-flow analyses, or model checking to product lines. If we aim to apply that research to Linux or similarly complex configuration spaces, it is an open question whether BDDs can be created for them.<br><br>
-		
-		Third, there are many advantages of having a BDD. While it is widely accepted that satisfiability solving scales well for product lines, the potential advantage of a BDD is that one-time effort for the construction can pay-off when the BDD is later employed in follow-up analyses. The potential is amplified by several factors. First, a feature model is typically changed less frequently than implementation artifacts. As a consequence, a new BDD only needs to be created when the feature model changes. Second, for every new revision of the product line there are several analyses needed of which each typically is reduced to numerous satisfiability problems. It is likely that a large portion of the satisfiability problems can be solved more efficiently using a BDD.<br><br>
-		
-		<h4>What is the goal of this challenge?</h4>
-		
-		While our claim about the holy grail is focused on BDDs and Linux, there is a more general challenge behind this specific one. Linux is just one example of a large-scale configuration space. A BDD is just one example of a knowledge compilation technique. The goal of this challenge is to promote the problem of knowledge compilation for large-scale configuration spaces. In particular, this challenge is not only focused on software configuration, but also configurable systems and product configuration. Furthermore, any representation of the configuration space that invests offline computations (i.e., compilation) in favor of faster online computations would fall into the scope of this challenge.<br><br>
-		
-		What is the problem of the current situation? Many product-line researchers seem to address very similar problems for various reasons, but largely without documenting their failed attempts. Other researchers are most likely repeating the same mistakes again. The goal of this challenge is to make this problem explicit, to give researchers a forum to discuss attempts, and to exchange ideas on possible solutions.
+  <div id="discussion" class="container-fluid bg-grey">
+    <div class="row">
+      <div class="col-sm-1"></div>
+      <div class="col-sm-2"></div>
+      <div class="col-sm-7">
+        <h2>Discussion</h2>
+        No discussion section for the moment.
+      </div>
+      <div class="col-sm-2"></div>
     </div>
-	<div class="col-sm-2">
-	</div>
   </div>
-</div>
 
 
-<div id="solutions" class="container-fluid bg-grey">
-  <div class="row">
-     <div class="col-sm-1"></div>
-   <div class="col-sm-2"></div>
-    <div class="col-sm-7">
-<h2>Solutions</h2>
-<h3>On the scalability of building binary decision diagrams for current feature models</h3>
-<i>Tobias Heß, Chico Sundermann and Thomas Thüm</i><br/>
-SPLC 2021 Solution<br/>
-Binary decision diagrams (BDD) have been proposed for numerous product-line analyses. These analyses typically exploit properties unique to decision diagrams, such as negation in constant time and space.
-Furthermore, the existence of a BDD representing the configuration space of a product line removes the need to employ SAT or #SAT solvers for their analysis. Recent work has shown that
-the performance of state-of-the-art BDD libraries is significantly lower than previously reported and hypothesized. In this work, we provide an assessment of the state-of-the-art of BDD scalability in
-this domain and explain why previous results on the scalability of BDDs do not apply to more recent product-line instances.<br/>
-<a href="https://doi.org/10.1145/3461001.3474452" target="_new"><span class="glyphicon glyphicon-file"></span> Solution paper</a> <br>
-<a href="https://www.youtube.com/watch?v=WFWKhEp2UYw" target="_new"><span class="glyphicon glyphicon-facetime-video"></span> Video presentation of the solution</a> <br>
+  <footer class="container-fluid text-center">
+  </footer>
 
-<iframe width="420" height="315" src="https://www.youtube.com/embed/WFWKhEp2UYw">
+  <script>
+    $(document).ready(function () {
+      // Add smooth scrolling to all links in navbar + footer link
+      $(".navbar a, footer a[href='#mainPage']").on('click', function (event) {
 
-</iframe>
-<br/>
-    </div>
-	<div class="col-sm-2"></div>
-  </div>
-</div>
+        // Store hash
+        var hash = this.hash;
+        if (typeof $(hash).offset() !== 'undefined') {
 
-<div id="discussion" class="container-fluid bg-grey">
-  <div class="row">
-     <div class="col-sm-1"></div>
-   <div class="col-sm-2"></div>
-    <div class="col-sm-7">
-<h2>Discussion</h2>
-No discussion section for the moment.
-   </div>
-	<div class="col-sm-2"></div>
-  </div>
-</div>
+          // Prevent default anchor click behavior
+          event.preventDefault();
 
+          // Using jQuery's animate() method to add smooth page scroll
+          // The optional number (900) specifies the number of milliseconds it takes to scroll to the specified area
+          $('html, body').animate({
+            scrollTop: $(hash).offset().top
+          }, 900, function () {
 
-<footer class="container-fluid text-center">
-</footer>
-
-<script>
-$(document).ready(function(){
-  // Add smooth scrolling to all links in navbar + footer link
-  $(".navbar a, footer a[href='#mainPage']").on('click', function(event) {
-
-	// Store hash
-	var hash = this.hash;
-	if (typeof $(hash).offset() !== 'undefined') {
-	  
-    // Prevent default anchor click behavior
-    event.preventDefault();
-
-    // Using jQuery's animate() method to add smooth page scroll
-    // The optional number (900) specifies the number of milliseconds it takes to scroll to the specified area
-    $('html, body').animate({
-      scrollTop: $(hash).offset().top
-    }, 900, function(){
-   
-      // Add hash (#) to URL when done scrolling (default click behavior)
-      window.location.hash = hash;
-    });
-  }
-  });
-  
-  $(window).scroll(function() {
-    $(".slideanim").each(function(){
-      var pos = $(this).offset().top;
-
-      var winTop = $(window).scrollTop();
-        if (pos < winTop + 600) {
-          $(this).addClass("slide");
+            // Add hash (#) to URL when done scrolling (default click behavior)
+            window.location.hash = hash;
+          });
         }
-    });
-  });
-})
-</script>
+      });
+
+      $(window).scroll(function () {
+        $(".slideanim").each(function () {
+          var pos = $(this).offset().top;
+
+          var winTop = $(window).scrollTop();
+          if (pos < winTop + 600) {
+            $(this).addClass("slide");
+          }
+        });
+      });
+    })
+  </script>
 
 </body>
+
 </html>
